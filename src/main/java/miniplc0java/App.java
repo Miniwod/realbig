@@ -1,11 +1,6 @@
 package miniplc0java;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.InputStream;
-import java.io.PrintStream;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -26,7 +21,7 @@ import miniplc0java.tokenizer.Tokenizer;
 //import net.sourceforge.argparse4j.inf.Namespace;
 
 public class App {
-    public static void main(String[] args) throws CompileError {
+    public static void main(String[] args) throws CompileError, IOException {
 //        var argparse = buildArgparse();
 
 //        Namespace result;
@@ -38,10 +33,10 @@ public class App {
 //        }
 
         String result="a";
-        var inputFileName=args[0];
-        var outputFileName=args[1];
-//        var inputFileName="in.txt";
-//        var outputFileName="out.txt";
+//        var inputFileName=args[0];
+//        var outputFileName=args[1];
+        var inputFileName="in.txt";
+        var outputFileName="out.txt";
 
         InputStream input;
         if (inputFileName.equals("-")) {
@@ -106,7 +101,8 @@ public class App {
             // analyze
             var analyzer = new Analyser(tokenizer);
             analyzer.analyse();
-            analyzer.vm.eout(output);
+            FileOutputStream stream=new FileOutputStream(outputFileName);
+            analyzer.vm.eout(stream);
         }
         else {
             System.err.println("Please specify either '--analyse' or '--tokenize'.");

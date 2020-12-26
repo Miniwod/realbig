@@ -1,5 +1,7 @@
 package miniplc0java.analyser;
 
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.OutputStream;
 import java.io.PrintStream;
 
@@ -234,8 +236,7 @@ class Instruction{
         }
         System.out.print(ejz);
         System.out.print(" ");
-        if(withop) System.out.print(Vm.ejz(n,opn));
-//        if(withop) System.out.print(opn);
+        if(withop) System.out.print(Vm.sbejz(n,opn));
     }
     public void debug(){
         int n=8;
@@ -389,162 +390,160 @@ class Instruction{
         }
         System.out.print(ejz);
         System.out.print(" ");
-//        if(withop) System.out.print(Vm.ejz(n,opn));
         if(withop) System.out.print(opn);
     }
-    public void eout(PrintStream output){
+    public void eout(FileOutputStream stream) throws IOException {
         int n=8;
-        String ejz="";
+        byte[] ejz=new byte[1];
         {
             if(this.type==InstructionType.nop){
-                ejz=Vm.ejz(1,0x00);
+                ejz=Vm.zejz(1,0x00);
             }
             else if(this.type==InstructionType.putc){
-                ejz=Vm.ejz(1,0x55);
+                ejz=Vm.zejz(1,0x55);
             }
             else if(this.type==InstructionType.push){
-                ejz=Vm.ejz(1,0x01);
+                ejz=Vm.zejz(1,0x01);
                 n=8;
             }
             else if(this.type==InstructionType.pop){
-                ejz=Vm.ejz(1,0x02);
+                ejz=Vm.zejz(1,0x02);
             }
             else if(this.type==InstructionType.popn){
-                ejz=Vm.ejz(1,0x03);
+                ejz=Vm.zejz(1,0x03);
                 n=4;
             }
             else if(this.type==InstructionType.dup){
-                ejz=Vm.ejz(1,0x04);
+                ejz=Vm.zejz(1,0x04);
             }
             else if(this.type==InstructionType.loca){
-                ejz=Vm.ejz(1,0x0a);
+                ejz=Vm.zejz(1,0x0a);
                 n=4;
             }
             else if(this.type==InstructionType.arga){
-                ejz=Vm.ejz(1,0x0b);
+                ejz=Vm.zejz(1,0x0b);
                 n=4;
             }
             else if(this.type==InstructionType.globa){
-                ejz=Vm.ejz(1,0x0c);
+                ejz=Vm.zejz(1,0x0c);
                 n=4;
             }
             else if(this.type==InstructionType.load){
-                ejz=Vm.ejz(1,0x13);
+                ejz=Vm.zejz(1,0x13);
             }
             else if(this.type==InstructionType.store){
-                ejz=Vm.ejz(1,0x17);
+                ejz=Vm.zejz(1,0x17);
             }
             else if(this.type==InstructionType.alloc){
-                ejz=Vm.ejz(1,0x18);
+                ejz=Vm.zejz(1,0x18);
             }
             else if(this.type==InstructionType.free){
-                ejz=Vm.ejz(1,0x19);
+                ejz=Vm.zejz(1,0x19);
             }
             else if(this.type==InstructionType.stackalloc){
-                ejz=Vm.ejz(1,0x1a);
+                ejz=Vm.zejz(1,0x1a);
                 n=4;
             }
             else if(this.type==InstructionType.add){
-                ejz=Vm.ejz(1,0x20);
+                ejz=Vm.zejz(1,0x20);
             }
             else if(this.type==InstructionType.sub){
-                ejz=Vm.ejz(1,0x21);
+                ejz=Vm.zejz(1,0x21);
             }
             else if(this.type==InstructionType.mul){
-                ejz=Vm.ejz(1,0x22);
+                ejz=Vm.zejz(1,0x22);
             }
             else if(this.type==InstructionType.div){
-                ejz=Vm.ejz(1,0x23);
+                ejz=Vm.zejz(1,0x23);
             }
             else if(this.type==InstructionType.shl){
-                ejz=Vm.ejz(1,0x29);
+                ejz=Vm.zejz(1,0x29);
             }
             else if(this.type==InstructionType.shr){
-                ejz=Vm.ejz(1,0x2a);
+                ejz=Vm.zejz(1,0x2a);
             }
             else if(this.type==InstructionType.and){
-                ejz=Vm.ejz(1,0x2b);
+                ejz=Vm.zejz(1,0x2b);
             }
             else if(this.type==InstructionType.or){
-                ejz=Vm.ejz(1,0x2c);
+                ejz=Vm.zejz(1,0x2c);
             }
             else if(this.type==InstructionType.xor){
-                ejz=Vm.ejz(1,0x2d);
+                ejz=Vm.zejz(1,0x2d);
             }
             else if(this.type == InstructionType.not){
-                ejz=Vm.ejz(1,0x2e);
+                ejz=Vm.zejz(1,0x2e);
             }
             else if(this.type==InstructionType.cmp){
-                ejz=Vm.ejz(1,0x30);
+                ejz=Vm.zejz(1,0x30);
             }
             else if(this.type==InstructionType.neg){
-                ejz=Vm.ejz(1,0x34);
+                ejz=Vm.zejz(1,0x34);
             }
             else if(this.type==InstructionType.itof){
-                ejz=Vm.ejz(1,0x36);
+                ejz=Vm.zejz(1,0x36);
             }
             else if(this.type==InstructionType.ftoi){
-                ejz=Vm.ejz(1,0x37);
+                ejz=Vm.zejz(1,0x37);
             }
             else if(this.type==InstructionType.shrl){
-                ejz=Vm.ejz(1,0x38);
+                ejz=Vm.zejz(1,0x38);
             }
             else if(this.type==InstructionType.setlt){
-                ejz=Vm.ejz(1,0x39);
+                ejz=Vm.zejz(1,0x39);
             }
             else if(this.type==InstructionType.setgt){
-                ejz=Vm.ejz(1,0x3a);
+                ejz=Vm.zejz(1,0x3a);
             }
             else if(this.type==InstructionType.br){
-                ejz=Vm.ejz(1,0x41);
+                ejz=Vm.zejz(1,0x41);
                 n=4;
             }
             else if(this.type==InstructionType.brf){
-                ejz=Vm.ejz(1,0x42);
+                ejz=Vm.zejz(1,0x42);
                 n=4;
             }
             else if(this.type==InstructionType.brt){
-                ejz=Vm.ejz(1,0x43);
+                ejz=Vm.zejz(1,0x43);
                 n=4;
             }
             else if(this.type==InstructionType.call){
-                ejz=Vm.ejz(1,0x48);
+                ejz=Vm.zejz(1,0x48);
                 n=4;
             }
             else if(this.type==InstructionType.ret){
-                ejz=Vm.ejz(1,0x49);
+                ejz=Vm.zejz(1,0x49);
             }
             else if(this.type==InstructionType.callname){
-                ejz=Vm.ejz(1,0x4a);
+                ejz=Vm.zejz(1,0x4a);
                 n=4;
             }
             else if(this.type==InstructionType.scan){
-                ejz=Vm.ejz(1,0x50);
+                ejz=Vm.zejz(1,0x50);
             }
             else if(this.type==InstructionType.print){
-                ejz=Vm.ejz(1,0x54);
+                ejz=Vm.zejz(1,0x54);
             }
             else if(this.type==InstructionType.prints){
-                ejz=Vm.ejz(1,0x57);
+                ejz=Vm.zejz(1,0x57);
             }
             else if(this.type==InstructionType.println){
-                ejz=Vm.ejz(1,0x58);
+                ejz=Vm.zejz(1,0x58);
             }
             else if(this.type==InstructionType.panic){
-                ejz=Vm.ejz(1,0xfe);
+                ejz=Vm.zejz(1,0xfe);
             }
             else if(this.type==InstructionType.breakl){
-                ejz=Vm.ejz(1,0x41);
+                ejz=Vm.zejz(1,0x41);
                 n=4;
             }
             else if(this.type==InstructionType.continuel){
-                ejz=Vm.ejz(1,0x41);
+                ejz=Vm.zejz(1,0x41);
                 n=4;
             }
         }
-        output.print(ejz);
-//        output.print(" ");
-        if(withop) output.print(Vm.ejz(n,opn));
+        stream.write(ejz);
+        if(withop) stream.write(Vm.zejz(n,opn));
     }
 }
 
@@ -572,42 +571,38 @@ class GlobalVariable{
         this.isconst=true;
     }
     public void out(){
-        System.out.print(Vm.ejz(1,(isconst)?1:0));
+        System.out.print(Vm.sbejz(1,(isconst)?1:0));
         System.out.println();
         if(!string){
-            System.out.print(Vm.ejz(4,8));
+            System.out.print(Vm.sbejz(4,8));
             System.out.println();
-            System.out.print(Vm.ejz(8,ivalue));
+            System.out.print(Vm.sbejz(8,ivalue));
         }
         else{
             int l=svalue.length();
-            System.out.print(Vm.ejz(4,l));
+            System.out.print(Vm.sbejz(4,l));
             System.out.println();
             for(int i=0;i<l;i++){
                 int c=svalue.toCharArray()[i];
-                System.out.print(Vm.ejz(1,c));
+                System.out.print(Vm.sbejz(1,c));
             }
         }
         System.out.println();
     }
-    public void eout(PrintStream output){
-        output.print(Vm.ejz(1,(isconst)?1:0));
-//        output.println();
+    public void eout(FileOutputStream stream) throws IOException {
+        stream.write(Vm.zejz(1,(isconst)?1:0));
         if(!string){
-            output.print(Vm.ejz(4,8));
-//            output.println();
-            output.print(Vm.ejz(8,ivalue));
+            stream.write(Vm.zejz(4,8));
+            stream.write(Vm.zejz(8,ivalue));
         }
         else{
             int l=svalue.length();
-            output.print(Vm.ejz(4,l));
-//            output.println();
+            stream.write(Vm.zejz(4,l));
             for(int i=0;i<l;i++){
                 int c=svalue.toCharArray()[i];
-                output.print(Vm.ejz(1,c));
+                stream.write(Vm.zejz(1,c));
             }
         }
-//        output.println();
     }
 }
 
@@ -682,15 +677,15 @@ class Function{
     }
 
     public void out(){
-        System.out.print(Vm.ejz(4,id));
+        System.out.print(Vm.sbejz(4,id));
         System.out.println();
-        System.out.print(Vm.ejz(4,retnum));
+        System.out.print(Vm.sbejz(4,retnum));
         System.out.println();
-        System.out.print(Vm.ejz(4,paranum));
+        System.out.print(Vm.sbejz(4,paranum));
         System.out.println();
-        System.out.print(Vm.ejz(4,localnum));
+        System.out.print(Vm.sbejz(4,localnum));
         System.out.println();
-        System.out.print(Vm.ejz(4,bodynum));
+        System.out.print(Vm.sbejz(4,bodynum));
         System.out.println();
         for(int i=0;i<bodynum;i++){
             System.out.print(i+":");
@@ -700,22 +695,15 @@ class Function{
         }
         System.out.println();
     }
-    public void eout(PrintStream output){
-        output.print(Vm.ejz(4,id));
-//        output.println();
-        output.print(Vm.ejz(4,retnum));
-//        output.println();
-        output.print(Vm.ejz(4,paranum));
-//        output.println();
-        output.print(Vm.ejz(4,localnum));
-//        output.println();
-        output.print(Vm.ejz(4,bodynum));
-//        output.println();
+    public void eout(FileOutputStream stream) throws IOException {
+        stream.write(Vm.zejz(4,id));
+        stream.write(Vm.zejz(4,retnum));
+        stream.write(Vm.zejz(4,paranum));
+        stream.write(Vm.zejz(4,localnum));
+        stream.write(Vm.zejz(4,bodynum));
         for(int i=0;i<bodynum;i++){
-            ilist[i].eout(output);
-//            output.println();
+            ilist[i].eout(stream);
         }
-//        output.println();
     }
 }
 
@@ -731,7 +719,7 @@ public class Vm {
         if(v==null) v=new Vm();
         return v;
     }
-    public static String ejz(int n,int value){
+    public static String sbejz(int n,int value){
         int i=0,km=0;
         n=n*2;
         char[] is=new char[n];
@@ -768,6 +756,14 @@ public class Vm {
             }
         }
         return s;
+    }
+
+    public static byte[] zejz(int n,int value){
+        byte[] res=new byte[n];
+        for(int i=0;i<n;i++){
+            res[i]=(byte) (value>>>(n-i-1)*8);
+        }
+        return res;
     }
 
     public static int[] ejy(int n,int[] ejzs){
@@ -862,40 +858,32 @@ public class Vm {
         System.out.print("0x00000001");
         System.out.println();
         System.out.println();
-        System.out.print(ejz(4,gvn));
+        System.out.print(sbejz(4,gvn));
         System.out.println();
         System.out.println();
         for(int i=0;i<gvn;i++){
             gv[i].out();
             System.out.println();
         }
-        System.out.print(ejz(4,fln));
+        System.out.print(sbejz(4,fln));
         System.out.println();
         System.out.println();
         for(int i=0;i<fln;i++){
             fl[i].out();
         }
     }
-    public void eout(PrintStream output){
-        output.print(ejz(4,0x73203b3e));
-//        output.println();
-
-        output.print(ejz(4,0x00000001));
-//        output.println();
-//        output.println();
-
-        output.print(ejz(4,gvn));
-//        output.println();
-//        output.println();
+    public void eout(FileOutputStream stream) throws IOException {
+        byte[] magic={0x72,0x30,0x3B,0x3E};
+        byte[] version={0x00,0x00,0x00,0x01};
+        stream.write(magic);
+        stream.write(version);
+        stream.write(zejz(4,gvn));
         for(int i=0;i<gvn;i++){
-            gv[i].eout(output);
-//            output.println();
+            gv[i].eout(stream);
         }
-        output.print(ejz(4,fln));
-//        output.println();
-//        output.println();
+        stream.write(zejz(4,fln));
         for(int i=0;i<fln;i++){
-            fl[i].eout(output);
+            fl[i].eout(stream);
         }
     }
     public Function topFunction(){
