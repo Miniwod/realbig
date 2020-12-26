@@ -488,16 +488,15 @@ public final class Analyser {
             analyseBlockStmt();
             tt=peek().getTokenType();
             if(tt==TokenType.Else){
+                int ifendindex=vm.topFunction().bodynum;
+                vm.topFunction().addInstruction(new Instruction(InstructionType.br));
                 elseindex=vm.topFunction().bodynum;
                 expect(TokenType.Else);
-//                tt=peek().getTokenType();
-//                if(tt==TokenType.If){
-//                    analyseStmt();
-//                }
-//                else {
-//                    analyseBlockStmt();
-//                }
                 analyseStmt();
+                endindex=vm.topFunction().bodynum;
+
+                vm.topFunction().ilist[ifendindex].withop=true;
+                vm.topFunction().ilist[ifendindex].opn=endindex-ifendindex-1;
                 vm.topFunction().ilist[startindex].withop=true;
                 vm.topFunction().ilist[startindex].opn=elseindex-startindex-1;
             }
