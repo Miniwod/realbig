@@ -650,9 +650,8 @@ public final class Analyser {
             else if(nextIf(TokenType.Ge)!=null){
                 analyseExpression2();
 
-//                retop(vm.topFunction());
                 vm.topFunction().addInstruction(new Instruction(InstructionType.cmp));
-                vm.topFunction().addInstruction(new Instruction(InstructionType.setgt));
+                vm.topFunction().addInstruction(new Instruction(InstructionType.setlt));
                 falsetojump=false;
 
                 if(!sc.pop().type.equals(sc.pop().type)) throw new Error();
@@ -663,7 +662,7 @@ public final class Analyser {
 
 //                retop(vm.topFunction());
                 vm.topFunction().addInstruction(new Instruction(InstructionType.cmp));
-                vm.topFunction().addInstruction(new Instruction(InstructionType.setlt));
+                vm.topFunction().addInstruction(new Instruction(InstructionType.setgt));
                 falsetojump=false;
 
                 if(!sc.pop().type.equals(sc.pop().type)) throw new Error();
