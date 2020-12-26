@@ -732,28 +732,41 @@ public class Vm {
         return v;
     }
     public static String ejz(int n,int value){
-        int i=0;
+        int i=0,km=0;
         n=n*2;
         char[] is=new char[n];
         String s="";
         if(value<0){
             int[] ejzs=sze(n*4,-value);
-
             for(int j=0;j<n*4;j++){
                 ejzs[j]=ejzs[j]==1?0:1;
             }
             ejzs=ejy(n*4,ejzs);
+            km=0;
             for(int j=0;j<n;j++){
                 s+=ezsl(ejzs,j*4,j*4+3);
+                km++;
+                if(km==2){
+                    s+=" ";
+                    km=0;
+                }
             }
             return s;
         }
+        km=0;
         for(i=n-1;i>=0;i--){
             if(value%16<10) is[i]=(char) ('0'+value%16);
-            else is[i]=(char) ('a'+value%16-10);
+            else is[i]=(char) ('A'+value%16-10);
             value/=16;
         }
-        s=s+String.valueOf(is);
+        for(i=0;i<n;i++){
+            s+=is[i];
+            km++;
+            if(km==2){
+                s+=" ";
+                km=0;
+            }
+        }
         return s;
     }
 
@@ -779,7 +792,7 @@ public class Vm {
         for(int i=l;i<=r;i++){
             ans+=pow(2,r-i)*ejz[i];
         }
-        return (ans>=10)?(char) ('a'+ans-10):(char) ('0'+ans);
+        return (ans>=10)?(char) ('A'+ans-10):(char) ('0'+ans);
     }
 
     public static int[] sze(int n,int value){
