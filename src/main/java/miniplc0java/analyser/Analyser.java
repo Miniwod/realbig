@@ -918,7 +918,8 @@ public final class Analyser {
 
             int a=Integer.parseInt(tk.getValueString());
 
-            falsetojump=a!=0;
+//            falsetojump=a!=0;
+            falsetojump=true;
 
             sc.push("int");
             if(global){

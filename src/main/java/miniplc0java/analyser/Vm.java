@@ -73,7 +73,7 @@ class Instruction{
     }
     public Instruction(int index,InstructionType type){
         this.type=type;
-        this.withop=true;
+        this.withop=false;
         this.index=index;
     }
     public Instruction(InstructionType type,String zj){
@@ -762,22 +762,22 @@ public class Vm {
     }
 
     public static byte[] zejz(int n,int value){
-        System.out.println(n+" "+value);
+//        System.out.println(n+" "+value);
         byte[] res=new byte[n];
         if(n==8){
             long tmp=value;
             for(int i=0;i<n;i++){
                 res[i]=(byte) (tmp>>>(n-i-1)*8);
-                System.out.print(res[i]+" ");
+//                System.out.print(res[i]+" ");
             }
-            System.out.println();
+//            System.out.println();
             return res;
         }
         for(int i=0;i<n;i++){
             res[i]=(byte) (value>>>(n-i-1)*8);
-            System.out.print(res[i]+" ");
+//            System.out.print(res[i]+" ");
         }
-        System.out.println();
+//        System.out.println();
         return res;
     }
 
