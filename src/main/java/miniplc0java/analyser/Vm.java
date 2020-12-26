@@ -397,154 +397,154 @@ class Instruction{
         String ejz="";
         {
             if(this.type==InstructionType.nop){
-                ejz=Vm.zejzs(1,0x00);
+                ejz=Vm.ejz(1,0x00);
             }
             else if(this.type==InstructionType.putc){
-                ejz=Vm.zejzs(1,0x55);
+                ejz=Vm.ejz(1,0x55);
             }
             else if(this.type==InstructionType.push){
-                ejz=Vm.zejzs(1,0x01);
+                ejz=Vm.ejz(1,0x01);
                 n=8;
             }
             else if(this.type==InstructionType.pop){
-                ejz=Vm.zejzs(1,0x02);
+                ejz=Vm.ejz(1,0x02);
             }
             else if(this.type==InstructionType.popn){
-                ejz=Vm.zejzs(1,0x03);
+                ejz=Vm.ejz(1,0x03);
                 n=4;
             }
             else if(this.type==InstructionType.dup){
-                ejz=Vm.zejzs(1,0x04);
+                ejz=Vm.ejz(1,0x04);
             }
             else if(this.type==InstructionType.loca){
-                ejz=Vm.zejzs(1,0x0a);
+                ejz=Vm.ejz(1,0x0a);
                 n=4;
             }
             else if(this.type==InstructionType.arga){
-                ejz=Vm.zejzs(1,0x0b);
+                ejz=Vm.ejz(1,0x0b);
                 n=4;
             }
             else if(this.type==InstructionType.globa){
-                ejz=Vm.zejzs(1,0x0c);
+                ejz=Vm.ejz(1,0x0c);
                 n=4;
             }
             else if(this.type==InstructionType.load){
-                ejz=Vm.zejzs(1,0x13);
+                ejz=Vm.ejz(1,0x13);
             }
             else if(this.type==InstructionType.store){
-                ejz=Vm.zejzs(1,0x17);
+                ejz=Vm.ejz(1,0x17);
             }
             else if(this.type==InstructionType.alloc){
-                ejz=Vm.zejzs(1,0x18);
+                ejz=Vm.ejz(1,0x18);
             }
             else if(this.type==InstructionType.free){
-                ejz=Vm.zejzs(1,0x19);
+                ejz=Vm.ejz(1,0x19);
             }
             else if(this.type==InstructionType.stackalloc){
-                ejz=Vm.zejzs(1,0x1a);
+                ejz=Vm.ejz(1,0x1a);
                 n=4;
             }
             else if(this.type==InstructionType.add){
-                ejz=Vm.zejzs(1,0x20);
+                ejz=Vm.ejz(1,0x20);
             }
             else if(this.type==InstructionType.sub){
-                ejz=Vm.zejzs(1,0x21);
+                ejz=Vm.ejz(1,0x21);
             }
             else if(this.type==InstructionType.mul){
-                ejz=Vm.zejzs(1,0x22);
+                ejz=Vm.ejz(1,0x22);
             }
             else if(this.type==InstructionType.div){
-                ejz=Vm.zejzs(1,0x23);
+                ejz=Vm.ejz(1,0x23);
             }
             else if(this.type==InstructionType.shl){
-                ejz=Vm.zejzs(1,0x29);
+                ejz=Vm.ejz(1,0x29);
             }
             else if(this.type==InstructionType.shr){
-                ejz=Vm.zejzs(1,0x2a);
+                ejz=Vm.ejz(1,0x2a);
             }
             else if(this.type==InstructionType.and){
-                ejz=Vm.zejzs(1,0x2b);
+                ejz=Vm.ejz(1,0x2b);
             }
             else if(this.type==InstructionType.or){
-                ejz=Vm.zejzs(1,0x2c);
+                ejz=Vm.ejz(1,0x2c);
             }
             else if(this.type==InstructionType.xor){
-                ejz=Vm.zejzs(1,0x2d);
+                ejz=Vm.ejz(1,0x2d);
             }
             else if(this.type == InstructionType.not){
-                ejz=Vm.zejzs(1,0x2e);
+                ejz=Vm.ejz(1,0x2e);
             }
             else if(this.type==InstructionType.cmp){
-                ejz=Vm.zejzs(1,0x30);
+                ejz=Vm.ejz(1,0x30);
             }
             else if(this.type==InstructionType.neg){
-                ejz=Vm.zejzs(1,0x34);
+                ejz=Vm.ejz(1,0x34);
             }
             else if(this.type==InstructionType.itof){
-                ejz=Vm.zejzs(1,0x36);
+                ejz=Vm.ejz(1,0x36);
             }
             else if(this.type==InstructionType.ftoi){
-                ejz=Vm.zejzs(1,0x37);
+                ejz=Vm.ejz(1,0x37);
             }
             else if(this.type==InstructionType.shrl){
-                ejz=Vm.zejzs(1,0x38);
+                ejz=Vm.ejz(1,0x38);
             }
             else if(this.type==InstructionType.setlt){
-                ejz=Vm.zejzs(1,0x39);
+                ejz=Vm.ejz(1,0x39);
             }
             else if(this.type==InstructionType.setgt){
-                ejz=Vm.zejzs(1,0x3a);
+                ejz=Vm.ejz(1,0x3a);
             }
             else if(this.type==InstructionType.br){
-                ejz=Vm.zejzs(1,0x41);
+                ejz=Vm.ejz(1,0x41);
                 n=4;
             }
             else if(this.type==InstructionType.brf){
-                ejz=Vm.zejzs(1,0x42);
+                ejz=Vm.ejz(1,0x42);
                 n=4;
             }
             else if(this.type==InstructionType.brt){
-                ejz=Vm.zejzs(1,0x43);
+                ejz=Vm.ejz(1,0x43);
                 n=4;
             }
             else if(this.type==InstructionType.call){
-                ejz=Vm.zejzs(1,0x48);
+                ejz=Vm.ejz(1,0x48);
                 n=4;
             }
             else if(this.type==InstructionType.ret){
-                ejz=Vm.zejzs(1,0x49);
+                ejz=Vm.ejz(1,0x49);
             }
             else if(this.type==InstructionType.callname){
-                ejz=Vm.zejzs(1,0x4a);
+                ejz=Vm.ejz(1,0x4a);
                 n=4;
             }
             else if(this.type==InstructionType.scan){
-                ejz=Vm.zejzs(1,0x50);
+                ejz=Vm.ejz(1,0x50);
             }
             else if(this.type==InstructionType.print){
-                ejz=Vm.zejzs(1,0x54);
+                ejz=Vm.ejz(1,0x54);
             }
             else if(this.type==InstructionType.prints){
-                ejz=Vm.zejzs(1,0x57);
+                ejz=Vm.ejz(1,0x57);
             }
             else if(this.type==InstructionType.println){
-                ejz=Vm.zejzs(1,0x58);
+                ejz=Vm.ejz(1,0x58);
             }
             else if(this.type==InstructionType.panic){
-                ejz=Vm.zejzs(1,0xfe);
+                ejz=Vm.ejz(1,0xfe);
             }
             else if(this.type==InstructionType.breakl){
-                ejz=Vm.zejzs(1,0x41);
+                ejz=Vm.ejz(1,0x41);
                 n=4;
             }
             else if(this.type==InstructionType.continuel){
-                ejz=Vm.zejzs(1,0x41);
+                ejz=Vm.ejz(1,0x41);
                 n=4;
             }
         }
         output.print(ejz);
 //        output.print(" ");
-        if(withop) output.print(Vm.zejzs(n,opn));
+        if(withop) output.print(Vm.ejz(n,opn));
     }
 }
 
@@ -591,20 +591,20 @@ class GlobalVariable{
         System.out.println();
     }
     public void eout(PrintStream output){
-        output.print(Vm.zejzs(1,(isconst)?1:0));
+        output.print(Vm.ejz(1,(isconst)?1:0));
 //        output.println();
         if(!string){
-            output.print(Vm.zejzs(4,8));
+            output.print(Vm.ejz(4,8));
 //            output.println();
-            output.print(Vm.zejzs(8,ivalue));
+            output.print(Vm.ejz(8,ivalue));
         }
         else{
             int l=svalue.length();
-            output.print(Vm.zejzs(4,l));
+            output.print(Vm.ejz(4,l));
 //            output.println();
             for(int i=0;i<l;i++){
                 int c=svalue.toCharArray()[i];
-                output.print(Vm.zejzs(1,c));
+                output.print(Vm.ejz(1,c));
             }
         }
 //        output.println();
@@ -701,15 +701,15 @@ class Function{
         System.out.println();
     }
     public void eout(PrintStream output){
-        output.print(Vm.zejzs(4,id));
+        output.print(Vm.ejz(4,id));
 //        output.println();
-        output.print(Vm.zejzs(4,retnum));
+        output.print(Vm.ejz(4,retnum));
 //        output.println();
-        output.print(Vm.zejzs(4,paranum));
+        output.print(Vm.ejz(4,paranum));
 //        output.println();
-        output.print(Vm.zejzs(4,localnum));
+        output.print(Vm.ejz(4,localnum));
 //        output.println();
-        output.print(Vm.zejzs(4,bodynum));
+        output.print(Vm.ejz(4,bodynum));
 //        output.println();
         for(int i=0;i<bodynum;i++){
             ilist[i].eout(output);
@@ -735,7 +735,7 @@ public class Vm {
         int i=0;
         n=n*2;
         char[] is=new char[n];
-        String s="0x";
+        String s="";
         if(value<0){
             int[] ejzs=sze(n*4,-value);
 
@@ -864,14 +864,14 @@ public class Vm {
         }
     }
     public void eout(PrintStream output){
-        output.print(zejzs(4,0x73203b3e));
+        output.print(ejz(4,0x73203b3e));
 //        output.println();
 
-        output.print(zejzs(4,0x00000001));
+        output.print(ejz(4,0x00000001));
 //        output.println();
 //        output.println();
 
-        output.print(zejzs(4,gvn));
+        output.print(ejz(4,gvn));
 //        output.println();
 //        output.println();
         for(int i=0;i<gvn;i++){
