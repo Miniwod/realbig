@@ -38,10 +38,10 @@ public class App {
 //        }
 
         String result="a";
-//        var inputFileName=args[0];
-//        var outputFileName=args[1];
-        var inputFileName="in.txt";
-        var outputFileName="out.txt";
+        var inputFileName=args[0];
+        var outputFileName=args[1];
+//        var inputFileName="in.txt";
+//        var outputFileName="out.txt";
 
         InputStream input;
         if (inputFileName.equals("-")) {
