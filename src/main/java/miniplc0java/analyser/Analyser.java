@@ -792,11 +792,10 @@ public final class Analyser {
             if(peek().getTokenType()==TokenType.LParen){
                 expect(TokenType.LParen);
                 if(tk.getValueString().equals("putstr")){
-//                    expect(TokenType.LParen);
                     puts=true;
                     analyseCallParamList();
-                    vm.topFunction().addInstruction(new Instruction(InstructionType.prints,vm.getGVId(putst)));
-//                    expect(TokenType.RParen);
+                    vm.topFunction().addInstruction(new Instruction(InstructionType.push,vm.getGVId(putst)));
+                    vm.topFunction().addInstruction(new Instruction(InstructionType.prints));
                     puts=false;
                 }
                 else if(tk.getValueString().equals("putint")){

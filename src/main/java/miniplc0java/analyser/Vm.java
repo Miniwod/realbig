@@ -543,7 +543,10 @@ class Instruction{
             }
         }
         stream.write(ejz);
-        if(withop) stream.write(Vm.zejz(n,opn));
+        if(withop){
+//            System.out.println(opn);
+            stream.write(Vm.zejz(n,opn));
+        }
     }
 }
 
@@ -759,10 +762,22 @@ public class Vm {
     }
 
     public static byte[] zejz(int n,int value){
+        System.out.println(n+" "+value);
         byte[] res=new byte[n];
+        if(n==8){
+            long tmp=value;
+            for(int i=0;i<n;i++){
+                res[i]=(byte) (tmp>>>(n-i-1)*8);
+                System.out.print(res[i]+" ");
+            }
+            System.out.println();
+            return res;
+        }
         for(int i=0;i<n;i++){
             res[i]=(byte) (value>>>(n-i-1)*8);
+            System.out.print(res[i]+" ");
         }
+        System.out.println();
         return res;
     }
 
@@ -873,10 +888,11 @@ public class Vm {
         }
     }
     public void eout(FileOutputStream stream) throws IOException {
-        byte[] magic={0x72,0x30,0x3B,0x3E};
-        byte[] version={0x00,0x00,0x00,0x01};
-        stream.write(magic);
-        stream.write(version);
+//        byte[] magic={0x72,0x30,0x3B,0x3E};
+//        byte[] version={0x00,0x00,0x00,0x01};
+        stream.write(zejz(4,0x72303B3E));
+        stream.write(zejz(4,0x00000001));
+//        stream.write(version);
         stream.write(zejz(4,gvn));
         for(int i=0;i<gvn;i++){
             gv[i].eout(stream);
@@ -892,7 +908,10 @@ public class Vm {
     }
     public int getGVId(String name){
         for(int i=0;i<gvn;i++){
-            if(gv[i].name.equals(name)) return gv[i].id;
+            if(gv[i].name.equals(name)){
+//                System.out.println(gv[i].name+" "+gv[i].id);
+                return gv[i].id;
+            }
         }
         return -1;
     }
