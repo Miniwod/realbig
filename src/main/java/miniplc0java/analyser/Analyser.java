@@ -260,7 +260,7 @@ public final class Analyser {
         }
         int mainid=vm.getFunctionId("main");
         fstart.addInstruction(new Instruction(InstructionType.call,mainid));
-        fstart.addInstruction(new Instruction(InstructionType.ret));
+//        fstart.addInstruction(new Instruction(InstructionType.ret));
         vm.fl[0]=fstart;
         vm.out();
     }
